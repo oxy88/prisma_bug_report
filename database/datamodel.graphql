@@ -1,0 +1,21 @@
+type Shop {
+  id: ID! @unique
+  owner: Owner
+}
+
+type Owner {
+  id: ID! @unique
+  shop: Shop
+  favoriteFruits: [Fruit!]!
+}
+
+type Fruit {
+  id: ID! @unique
+  owner: Owner
+  color: Color
+}
+
+type Color {
+  id: ID! @unique
+  fruit: Fruit
+}

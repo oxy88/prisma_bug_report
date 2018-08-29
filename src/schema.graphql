@@ -1,0 +1,5 @@
+# import Shop from "./generated/prisma.graphql"
+
+type Query {
+  shops: [Shop!]!
+}

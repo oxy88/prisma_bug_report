@@ -1,0 +1,815 @@
+# source: https://us1.prisma.sh/public-jadekoala-720/bug_report/dev
+# timestamp: Wed Aug 29 2018 16:16:53 GMT+0900 (KST)
+
+type AggregateColor {
+  count: Int!
+}
+
+type AggregateFruit {
+  count: Int!
+}
+
+type AggregateOwner {
+  count: Int!
+}
+
+type AggregateShop {
+  count: Int!
+}
+
+type BatchPayload {
+  """The number of nodes that have been affected by the Batch operation."""
+  count: Long!
+}
+
+type Color implements Node {
+  id: ID!
+  fruit(where: FruitWhereInput): Fruit
+}
+
+"""A connection to a list of items."""
+type ColorConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ColorEdge]!
+  aggregate: AggregateColor!
+}
+
+input ColorCreateInput {
+  fruit: FruitCreateOneWithoutColorInput
+}
+
+input ColorCreateOneWithoutFruitInput {
+  connect: ColorWhereUniqueInput
+}
+
+"""An edge in a connection."""
+type ColorEdge {
+  """The item at the end of the edge."""
+  node: Color!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum ColorOrderByInput {
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ColorPreviousValues {
+  id: ID!
+}
+
+type ColorSubscriptionPayload {
+  mutation: MutationType!
+  node: Color
+  updatedFields: [String!]
+  previousValues: ColorPreviousValues
+}
+
+input ColorSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ColorSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ColorSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ColorSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: ColorWhereInput
+}
+
+input ColorUpdateInput {
+  fruit: FruitUpdateOneWithoutColorInput
+}
+
+input ColorUpdateOneWithoutFruitInput {
+  connect: ColorWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+}
+
+input ColorWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ColorWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ColorWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ColorWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  fruit: FruitWhereInput
+}
+
+input ColorWhereUniqueInput {
+  id: ID
+}
+
+type Fruit implements Node {
+  id: ID!
+  owner(where: OwnerWhereInput): Owner
+  color(where: ColorWhereInput): Color
+}
+
+"""A connection to a list of items."""
+type FruitConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FruitEdge]!
+  aggregate: AggregateFruit!
+}
+
+input FruitCreateInput {
+  owner: OwnerCreateOneWithoutFavoriteFruitsInput
+  color: ColorCreateOneWithoutFruitInput
+}
+
+input FruitCreateManyWithoutOwnerInput {
+  create: [FruitCreateWithoutOwnerInput!]
+  connect: [FruitWhereUniqueInput!]
+}
+
+input FruitCreateOneWithoutColorInput {
+  create: FruitCreateWithoutColorInput
+  connect: FruitWhereUniqueInput
+}
+
+input FruitCreateWithoutColorInput {
+  owner: OwnerCreateOneWithoutFavoriteFruitsInput
+}
+
+input FruitCreateWithoutOwnerInput {
+  color: ColorCreateOneWithoutFruitInput
+}
+
+"""An edge in a connection."""
+type FruitEdge {
+  """The item at the end of the edge."""
+  node: Fruit!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum FruitOrderByInput {
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type FruitPreviousValues {
+  id: ID!
+}
+
+type FruitSubscriptionPayload {
+  mutation: MutationType!
+  node: Fruit
+  updatedFields: [String!]
+  previousValues: FruitPreviousValues
+}
+
+input FruitSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FruitSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FruitSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FruitSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: FruitWhereInput
+}
+
+input FruitUpdateInput {
+  owner: OwnerUpdateOneWithoutFavoriteFruitsInput
+  color: ColorUpdateOneWithoutFruitInput
+}
+
+input FruitUpdateManyWithoutOwnerInput {
+  create: [FruitCreateWithoutOwnerInput!]
+  connect: [FruitWhereUniqueInput!]
+  disconnect: [FruitWhereUniqueInput!]
+  delete: [FruitWhereUniqueInput!]
+  update: [FruitUpdateWithWhereUniqueWithoutOwnerInput!]
+  upsert: [FruitUpsertWithWhereUniqueWithoutOwnerInput!]
+}
+
+input FruitUpdateOneWithoutColorInput {
+  create: FruitCreateWithoutColorInput
+  connect: FruitWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: FruitUpdateWithoutColorDataInput
+  upsert: FruitUpsertWithoutColorInput
+}
+
+input FruitUpdateWithoutColorDataInput {
+  owner: OwnerUpdateOneWithoutFavoriteFruitsInput
+}
+
+input FruitUpdateWithoutOwnerDataInput {
+  color: ColorUpdateOneWithoutFruitInput
+}
+
+input FruitUpdateWithWhereUniqueWithoutOwnerInput {
+  where: FruitWhereUniqueInput!
+  data: FruitUpdateWithoutOwnerDataInput!
+}
+
+input FruitUpsertWithoutColorInput {
+  update: FruitUpdateWithoutColorDataInput!
+  create: FruitCreateWithoutColorInput!
+}
+
+input FruitUpsertWithWhereUniqueWithoutOwnerInput {
+  where: FruitWhereUniqueInput!
+  update: FruitUpdateWithoutOwnerDataInput!
+  create: FruitCreateWithoutOwnerInput!
+}
+
+input FruitWhereInput {
+  """Logical AND on all given filters."""
+  AND: [FruitWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [FruitWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FruitWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  owner: OwnerWhereInput
+  color: ColorWhereInput
+}
+
+input FruitWhereUniqueInput {
+  id: ID
+}
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createShop(data: ShopCreateInput!): Shop!
+  createOwner(data: OwnerCreateInput!): Owner!
+  createFruit(data: FruitCreateInput!): Fruit!
+  createColor(data: ColorCreateInput!): Color!
+  updateShop(data: ShopUpdateInput!, where: ShopWhereUniqueInput!): Shop
+  updateOwner(data: OwnerUpdateInput!, where: OwnerWhereUniqueInput!): Owner
+  updateFruit(data: FruitUpdateInput!, where: FruitWhereUniqueInput!): Fruit
+  updateColor(data: ColorUpdateInput!, where: ColorWhereUniqueInput!): Color
+  deleteShop(where: ShopWhereUniqueInput!): Shop
+  deleteOwner(where: OwnerWhereUniqueInput!): Owner
+  deleteFruit(where: FruitWhereUniqueInput!): Fruit
+  deleteColor(where: ColorWhereUniqueInput!): Color
+  upsertShop(where: ShopWhereUniqueInput!, create: ShopCreateInput!, update: ShopUpdateInput!): Shop!
+  upsertOwner(where: OwnerWhereUniqueInput!, create: OwnerCreateInput!, update: OwnerUpdateInput!): Owner!
+  upsertFruit(where: FruitWhereUniqueInput!, create: FruitCreateInput!, update: FruitUpdateInput!): Fruit!
+  upsertColor(where: ColorWhereUniqueInput!, create: ColorCreateInput!, update: ColorUpdateInput!): Color!
+  updateManyShops(data: ShopUpdateInput!, where: ShopWhereInput): BatchPayload!
+  updateManyOwners(data: OwnerUpdateInput!, where: OwnerWhereInput): BatchPayload!
+  updateManyFruits(data: FruitUpdateInput!, where: FruitWhereInput): BatchPayload!
+  updateManyColors(data: ColorUpdateInput!, where: ColorWhereInput): BatchPayload!
+  deleteManyShops(where: ShopWhereInput): BatchPayload!
+  deleteManyOwners(where: OwnerWhereInput): BatchPayload!
+  deleteManyFruits(where: FruitWhereInput): BatchPayload!
+  deleteManyColors(where: ColorWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+type Owner implements Node {
+  id: ID!
+  shop(where: ShopWhereInput): Shop
+  favoriteFruits(where: FruitWhereInput, orderBy: FruitOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Fruit!]
+}
+
+"""A connection to a list of items."""
+type OwnerConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [OwnerEdge]!
+  aggregate: AggregateOwner!
+}
+
+input OwnerCreateInput {
+  shop: ShopCreateOneWithoutOwnerInput
+  favoriteFruits: FruitCreateManyWithoutOwnerInput
+}
+
+input OwnerCreateOneWithoutFavoriteFruitsInput {
+  create: OwnerCreateWithoutFavoriteFruitsInput
+  connect: OwnerWhereUniqueInput
+}
+
+input OwnerCreateOneWithoutShopInput {
+  create: OwnerCreateWithoutShopInput
+  connect: OwnerWhereUniqueInput
+}
+
+input OwnerCreateWithoutFavoriteFruitsInput {
+  shop: ShopCreateOneWithoutOwnerInput
+}
+
+input OwnerCreateWithoutShopInput {
+  favoriteFruits: FruitCreateManyWithoutOwnerInput
+}
+
+"""An edge in a connection."""
+type OwnerEdge {
+  """The item at the end of the edge."""
+  node: Owner!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum OwnerOrderByInput {
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type OwnerPreviousValues {
+  id: ID!
+}
+
+type OwnerSubscriptionPayload {
+  mutation: MutationType!
+  node: Owner
+  updatedFields: [String!]
+  previousValues: OwnerPreviousValues
+}
+
+input OwnerSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [OwnerSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [OwnerSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [OwnerSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: OwnerWhereInput
+}
+
+input OwnerUpdateInput {
+  shop: ShopUpdateOneWithoutOwnerInput
+  favoriteFruits: FruitUpdateManyWithoutOwnerInput
+}
+
+input OwnerUpdateOneWithoutFavoriteFruitsInput {
+  create: OwnerCreateWithoutFavoriteFruitsInput
+  connect: OwnerWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: OwnerUpdateWithoutFavoriteFruitsDataInput
+  upsert: OwnerUpsertWithoutFavoriteFruitsInput
+}
+
+input OwnerUpdateOneWithoutShopInput {
+  create: OwnerCreateWithoutShopInput
+  connect: OwnerWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: OwnerUpdateWithoutShopDataInput
+  upsert: OwnerUpsertWithoutShopInput
+}
+
+input OwnerUpdateWithoutFavoriteFruitsDataInput {
+  shop: ShopUpdateOneWithoutOwnerInput
+}
+
+input OwnerUpdateWithoutShopDataInput {
+  favoriteFruits: FruitUpdateManyWithoutOwnerInput
+}
+
+input OwnerUpsertWithoutFavoriteFruitsInput {
+  update: OwnerUpdateWithoutFavoriteFruitsDataInput!
+  create: OwnerCreateWithoutFavoriteFruitsInput!
+}
+
+input OwnerUpsertWithoutShopInput {
+  update: OwnerUpdateWithoutShopDataInput!
+  create: OwnerCreateWithoutShopInput!
+}
+
+input OwnerWhereInput {
+  """Logical AND on all given filters."""
+  AND: [OwnerWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [OwnerWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [OwnerWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  shop: ShopWhereInput
+  favoriteFruits_every: FruitWhereInput
+  favoriteFruits_some: FruitWhereInput
+  favoriteFruits_none: FruitWhereInput
+}
+
+input OwnerWhereUniqueInput {
+  id: ID
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type Query {
+  shops(where: ShopWhereInput, orderBy: ShopOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Shop]!
+  owners(where: OwnerWhereInput, orderBy: OwnerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Owner]!
+  fruits(where: FruitWhereInput, orderBy: FruitOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Fruit]!
+  colors(where: ColorWhereInput, orderBy: ColorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Color]!
+  shop(where: ShopWhereUniqueInput!): Shop
+  owner(where: OwnerWhereUniqueInput!): Owner
+  fruit(where: FruitWhereUniqueInput!): Fruit
+  color(where: ColorWhereUniqueInput!): Color
+  shopsConnection(where: ShopWhereInput, orderBy: ShopOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ShopConnection!
+  ownersConnection(where: OwnerWhereInput, orderBy: OwnerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OwnerConnection!
+  fruitsConnection(where: FruitWhereInput, orderBy: FruitOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FruitConnection!
+  colorsConnection(where: ColorWhereInput, orderBy: ColorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ColorConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+type Shop implements Node {
+  id: ID!
+  owner(where: OwnerWhereInput): Owner
+}
+
+"""A connection to a list of items."""
+type ShopConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ShopEdge]!
+  aggregate: AggregateShop!
+}
+
+input ShopCreateInput {
+  owner: OwnerCreateOneWithoutShopInput
+}
+
+input ShopCreateOneWithoutOwnerInput {
+  connect: ShopWhereUniqueInput
+}
+
+"""An edge in a connection."""
+type ShopEdge {
+  """The item at the end of the edge."""
+  node: Shop!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum ShopOrderByInput {
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ShopPreviousValues {
+  id: ID!
+}
+
+type ShopSubscriptionPayload {
+  mutation: MutationType!
+  node: Shop
+  updatedFields: [String!]
+  previousValues: ShopPreviousValues
+}
+
+input ShopSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ShopSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ShopSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ShopSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: ShopWhereInput
+}
+
+input ShopUpdateInput {
+  owner: OwnerUpdateOneWithoutShopInput
+}
+
+input ShopUpdateOneWithoutOwnerInput {
+  connect: ShopWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+}
+
+input ShopWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ShopWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ShopWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ShopWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  owner: OwnerWhereInput
+}
+
+input ShopWhereUniqueInput {
+  id: ID
+}
+
+type Subscription {
+  shop(where: ShopSubscriptionWhereInput): ShopSubscriptionPayload
+  owner(where: OwnerSubscriptionWhereInput): OwnerSubscriptionPayload
+  fruit(where: FruitSubscriptionWhereInput): FruitSubscriptionPayload
+  color(where: ColorSubscriptionWhereInput): ColorSubscriptionPayload
+}
